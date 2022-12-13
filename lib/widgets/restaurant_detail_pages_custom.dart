@@ -112,6 +112,14 @@ class InfoDetailRestaurant extends StatelessWidget {
     return FutureBuilder<bool>(
       future: databaseProvider.isFavorite(restaurantDetailResult.id),
       builder: ((context, snapshot) {
+        var isFavorite = snapshot.data ?? false;
+        var restaurantListResult = Restaurant1(
+            city: restaurantDetailResult.city,
+            description: restaurantDetailResult.description,
+            id: restaurantDetailResult.id,
+            name: restaurantDetailResult.name,
+            pictureId: restaurantDetailResult.pictureId,
+            rating: restaurantDetailResult.rating);
         if (snapshot.connectionState == ConnectionState.active) {
           return (CircularProgressIndicator());
         } else {
@@ -188,73 +196,95 @@ class InfoDetailRestaurant extends StatelessWidget {
                         const SizedBox(
                           width: 10,
                         ),
-                        Consumer<RestaurantDatabaseProvider>(
-                          builder: (context,
-                              RestaurantDatabaseProvider databaseProvider, _) {
-                            var restaurantListResult = Restaurant1(
-                                city: restaurantDetailResult.city,
-                                description: restaurantDetailResult.description,
-                                id: restaurantDetailResult.id,
-                                name: restaurantDetailResult.name,
-                                pictureId: restaurantDetailResult.pictureId,
-                                rating: restaurantDetailResult.rating);
-                            var isFavorite = snapshot.data ?? false;
-                            switch (databaseProvider.stateDatabase) {
-                              case ResultStateDatabase.loading:
-                                return const CircularProgressIndicator();
-                              case ResultStateDatabase.noData:
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    isFavorite == true
-                                        ? IconButton(
-                                            onPressed: () {
-                                              databaseProvider.removeFavorite(
-                                                  restaurantListResult.id);
-                                            },
-                                            icon: Icon(Icons.favorite),
-                                            color: Colors.red,
-                                          )
-                                        : IconButton(
-                                            onPressed: () {
-                                              databaseProvider.addFavorite(
-                                                  restaurantListResult);
-                                            },
-                                            icon: Icon(Icons.favorite_border),
-                                            color: Colors.red,
-                                          ),
-                                  ],
-                                );
-                              case ResultStateDatabase.hasData:
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    isFavorite == true
-                                        ? IconButton(
-                                            onPressed: () {
-                                              databaseProvider.removeFavorite(
-                                                  restaurantListResult.id);
-                                            },
-                                            icon: Icon(Icons.favorite),
-                                            color: Colors.red,
-                                          )
-                                        : IconButton(
-                                            onPressed: () {
-                                              databaseProvider.addFavorite(
-                                                  restaurantListResult);
-                                            },
-                                            icon: Icon(Icons.favorite_border),
-                                            color: Colors.red,
-                                          ),
-                                  ],
-                                );
-                              default:
-                                return const CircularProgressIndicator(
-                                  color: primary,
-                                );
-                            }
-                          },
-                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            isFavorite == true
+                                ? IconButton(
+                                    onPressed: () {
+                                      databaseProvider.removeFavorite(
+                                          restaurantListResult.id);
+                                    },
+                                    icon: Icon(Icons.favorite),
+                                    color: Colors.red,
+                                  )
+                                : IconButton(
+                                    onPressed: () {
+                                      databaseProvider
+                                          .addFavorite(restaurantListResult);
+                                    },
+                                    icon: Icon(Icons.favorite_border),
+                                    color: Colors.red,
+                                  ),
+                          ],
+                        )
+                        // Consumer<RestaurantDatabaseProvider>(
+                        //   builder: (context,
+                        //       RestaurantDatabaseProvider databaseProvider, _) {
+                        //     var restaurantListResult = Restaurant1(
+                        //         city: restaurantDetailResult.city,
+                        //         description: restaurantDetailResult.description,
+                        //         id: restaurantDetailResult.id,
+                        //         name: restaurantDetailResult.name,
+                        //         pictureId: restaurantDetailResult.pictureId,
+                        //         rating: restaurantDetailResult.rating);
+                        //     var isFavorite = snapshot.data ?? false;
+                        //     switch (databaseProvider.stateDatabase) {
+                        //       case ResultStateDatabase.loading:
+                        //         return const CircularProgressIndicator();
+                        //       case ResultStateDatabase.noData:
+                        //         return Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.center,
+                        //           children: [
+                        //             isFavorite == true
+                        //                 ? IconButton(
+                        //                     onPressed: () {
+                        //                       databaseProvider.removeFavorite(
+                        //                           restaurantListResult.id);
+                        //                     },
+                        //                     icon: Icon(Icons.favorite),
+                        //                     color: Colors.red,
+                        //                   )
+                        //                 : IconButton(
+                        //                     onPressed: () {
+                        //                       databaseProvider.addFavorite(
+                        //                           restaurantListResult);
+                        //                     },
+                        //                     icon: Icon(Icons.favorite_border),
+                        //                     color: Colors.red,
+                        //                   ),
+                        //           ],
+                        //         );
+                        //       case ResultStateDatabase.hasData:
+                        //         return Column(
+                        //           crossAxisAlignment: CrossAxisAlignment.center,
+                        //           children: [
+                        //             isFavorite == true
+                        //                 ? IconButton(
+                        //                     onPressed: () {
+                        //                       databaseProvider.removeFavorite(
+                        //                           restaurantListResult.id);
+                        //                     },
+                        //                     icon: Icon(Icons.favorite),
+                        //                     color: Colors.red,
+                        //                   )
+                        //                 : IconButton(
+                        //                     onPressed: () {
+                        //                       databaseProvider.addFavorite(
+                        //                           restaurantListResult);
+                        //                     },
+                        //                     icon: Icon(Icons.favorite_border),
+                        //                     color: Colors.red,
+                        //                   ),
+                        //           ],
+                        //         );
+                        //       default:
+                        //         return const CircularProgressIndicator(
+                        //           color: primary,
+                        //         );
+                        //     }
+                        //   },
+                        // ),
                       ],
                     ),
                   ],

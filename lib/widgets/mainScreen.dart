@@ -52,6 +52,9 @@ class _MainScreenCustomState extends State<MainScreenCustom> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    const SizedBox(
+                      width: 15,
+                    ),
                     ChooseMenus(
                       icon: home,
                       index: 0,
@@ -60,16 +63,23 @@ class _MainScreenCustomState extends State<MainScreenCustom> {
                         _onItemTapped(0);
                       },
                     ),
-                    const SizedBox(
-                      width: 100,
-                    ),
-                    ChooseMenus(
-                      icon: love,
-                      index: 1,
-                      indexactived: navigationProvider.chooseIndex,
-                      onPress: () {
-                        _onItemTapped(1);
-                      },
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        ChooseMenus(
+                          icon: love,
+                          index: 1,
+                          indexactived: navigationProvider.chooseIndex,
+                          onPress: () {
+                            _onItemTapped(1);
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

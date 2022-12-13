@@ -4,7 +4,7 @@ class DateTimeRestaurantHelper {
   static DateTime formatDateTime() {
     final now = DateTime.now();
     final dateTimeFormat = DateFormat('yyyy-MM-dd');
-    final timeSpesificRestaurant = '21:40:00';
+    final timeSpesificRestaurant = '11:00:00';
     final dateFormatCompleteRestaurant = DateFormat('yyyy-MM-dd HH:mm:ss');
 
     final todayDate = dateTimeFormat.format(now);

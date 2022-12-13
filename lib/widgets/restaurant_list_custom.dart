@@ -73,8 +73,12 @@ class RestaurantListPageCustom extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.location_on_outlined),
-                            Text(restaurantResult.city),
+                            Expanded(
+                              child: Icon(Icons.location_on_outlined),
+                            ),
+                            Expanded(
+                              child: Text(restaurantResult.city),
+                            ),
                           ],
                         ),
                       ],

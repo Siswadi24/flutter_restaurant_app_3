@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:restaurant_app_3/model/data/restaurant_detail.dart';
 
 var RestaurantTestingJson = {
   "id": "rqdv5juczeskfw1e867",
@@ -11,9 +12,9 @@ var RestaurantTestingJson = {
 };
 
 void main() {
-  test(
-      'Test Parsing Json Resttaurant List',
-      () => {
-            expect(RestaurantTestingJson['id'], 'rqdv5juczeskfw1e867'),
-          });
+  test('Test Parsing Json Resttaurant List', () async {
+    var restaurant = Restaurant.fromMap(RestaurantTestingJson).id;
+
+    expect(restaurant, "rqdv5juczeskfw1e867");
+  });
 }
