@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'package:restaurant_app_3/model/api/api_service.dart';
 import 'package:restaurant_app_3/provider/restaurant_search_provider.dart';
-import 'package:restaurant_app_3/ui/restaurant_list_page.dart';
 import 'package:restaurant_app_3/widgets/search_card.dart';
 
 class CustomSearchFitur extends StatefulWidget {

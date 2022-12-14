@@ -26,7 +26,7 @@ class RestaurantDatabaseProvider extends ChangeNotifier {
         await databaseHelperRestaurant.getRestaurantFavorite();
     if (_restaurantFavorite.isNotEmpty) {
       _stateDatabase = ResultStateDatabase.hasData;
-      notifyListeners();
+      // notifyListeners();
     } else {
       _stateDatabase = ResultStateDatabase.noData;
       _message = 'Data Kosong';
@@ -38,7 +38,7 @@ class RestaurantDatabaseProvider extends ChangeNotifier {
     try {
       await databaseHelperRestaurant.insertDataRestaurantFavorite(restaurant);
       _getRestaurantFavorite();
-      notifyListeners();
+      // notifyListeners();
     } catch (e) {
       _stateDatabase = ResultStateDatabase.error;
       _message = 'Error: $e';
@@ -50,7 +50,7 @@ class RestaurantDatabaseProvider extends ChangeNotifier {
     try {
       await databaseHelperRestaurant.deleteRestaurantFavorite(id);
       _getRestaurantFavorite();
-      notifyListeners();
+      // notifyListeners();
     } catch (e) {
       _stateDatabase = ResultStateDatabase.error;
       _message = 'Error: $e';

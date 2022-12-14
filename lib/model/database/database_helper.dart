@@ -35,7 +35,9 @@ class DatabaseHelper {
   }
 
   Future<Database?> get databaseRestaurant async {
-    _databaseRestaurant ??= await _restaurantDatabase();
+    if (_databaseRestaurant == null) {
+      _databaseRestaurant = await _restaurantDatabase();
+    }
     return _databaseRestaurant;
   }
 
@@ -62,8 +64,9 @@ class DatabaseHelper {
 
     if (resultsDatabaseRestaurant.isNotEmpty) {
       return resultsDatabaseRestaurant.first;
+    } else {
+      return {};
     }
-    return {};
   }
 
   Future<void> deleteRestaurantFavorite(String id) async {

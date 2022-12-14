@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'package:restaurant_app_3/model/data/restaurant_list.dart';
 import 'package:restaurant_app_3/model/data/restaurant_search.dart';
+import 'package:restaurant_app_3/ui/restaurant_detail_pages.dart';
 // import 'package:restaurant_app_3/ui/restaurant_detail_pages.dart';
-import 'package:restaurant_app_3/widgets/fitur_search_custom.dart';
 
 class RestaurantCardSearchPageCustom extends StatelessWidget {
   final RestaurantResultSearch restaurantResult;
@@ -18,11 +17,11 @@ class RestaurantCardSearchPageCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(
-        //   builder: (context) {
-        //     return RestaurantDetailPages(idRestaurant: restaurantResult.id);
-        //   },
-        // ));
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) {
+            return RestaurantDetailPages(idRestaurant: restaurantResult.id);
+          },
+        ));
       },
       child: Column(
         children: <Widget>[
